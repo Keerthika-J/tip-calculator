@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Title & Description -->
+    <title>Tip Calculator — Fast, Free Bill & Split Calculator</title>
+    <meta name="title" content="Tip Calculator — Fast, Free Bill & Split Calculator">
+    <meta name="description"
+        content="Calculate restaurant tips instantly and split bills effortlessly among friends. Free online tip calculator with custom percentages, tax options, and instant results.">
+    <meta name="keywords"
+        content="tip calculator, bill splitter, split bill calculator, calculate tip, restaurant tip calculator, gratuity calculator, tip percentage calculator">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Your Name or Brand">
+
+    <!-- Canonical Link (Update domain once deployed) -->
+    <link rel="canonical" href="https://your-domain.com/">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Tip Calculator — Fast, Free Bill & Split Calculator">
+    <meta property="og:description"
+        content="Calculate tips instantly and split bills effortlessly. Free, accurate, and works on any device.">
+    <meta property="og:image" content="https://your-domain.com/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="Tip Calculator — Fast, Free Bill & Split Calculator">
+    <meta property="twitter:description"
+        content="Calculate tips instantly and split bills effortlessly. Free, accurate, and works on any device.">
+    <meta property="twitter:image" content="https://your-domain.com/og-image.jpg">
+
+    <!-- Favicon Metadata -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Structured Data: WebApplication JSON-LD (Schema.org) -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Online Tip Calculator",
+    "url": "https://your-domain.com/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript",
+    "isAccessibleForFree": true,
+    "description": "An instant, easy-to-use web utility for calculating tip amounts and splitting dining bills per person.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        .calculator {
+            width: 100%;
+            max-width: 420px;
+            padding: 32px;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+        }
+
+        h3 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        .description {
+            margin: 0 0 28px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper span {
+            width: fit-content;
+            position: absolute;
+            top: 50%;
+            left: 14px;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        input {
+            width: 100%;
+            height: 48px;
+            padding: 0 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .currency-input {
+            padding-left: 32px;
+        }
+
+        .percentage-input {
+            padding-left: 32px;
+        }
+
+        input:focus {
+            border-color: #222;
+        }
+
+        .percentage {
+            position: absolute;
+            top: 50%;
+            right: 14px;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        button {
+            width: 100%;
+            height: 48px;
+            border: 0;
+            border-radius: 10px;
+            background: #222;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #000;
+        }
+
+        .error {
+            display: none;
+            margin-top: 16px;
+            color: #c00;
+            font-size: 14px;
+        }
+
+        .results {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 15px;
+        }
+
+        .result-row span:first-child {
+            color: #777;
+        }
+
+        .total {
+            margin-top: 12px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e5e5;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .total span:first-child {
+            color: #222;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+
+            .calculator {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hidden Heading for Crawler Context & Accessibility -->
+    <header style="display:none;">
+        <h1>Free Online Tip Calculator & Bill Splitter</h1>
+        <h2>Calculate Gratuity and Split Restaurant Bills Instantly</h2>
+    </header>
+
+    <!-- Your Tip Calculator Application Code Goes Here -->
+    <main class="calculator">
+        <h3>Tip Calculator</h3>
+        <p class="description">Calculate the tip and total bill amount.</p>
+
+        <form id="tipForm">
+
+            <div class="field">
+                <label for="bill">Bill Amount</label>
+
+                <div class="input-wrapper">
+                    <span>₹</span>
+                    <input id="bill" class="currency-input" type="number" min="0" step="0.01" placeholder="0.00"
+                        required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="tip">Tip Percentage</label>
+
+                <div class="input-wrapper">
+                    <input id="tip" class="percentage-input" type="number" min="0" max="100" step="1" placeholder="10"
+                        required>
+                    <span class="percentage">%</span>
+                </div>
+            </div>
+
+            <button type="submit">Calculate</button>
+
+        </form>
+
+        <p id="error" class="error"></p>
+
+        <div class="results">
+
+            <div class="result-row">
+                <span>Bill</span>
+                <span id="billResult">₹0.00</span>
+            </div>
+
+            <div class="result-row">
+                <span>Tip</span>
+                <span id="tipResult">₹0.00</span>
+            </div>
+
+            <div class="result-row total">
+                <span>Total</span>
+                <span id="totalResult">₹0.00</span>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const form = document.getElementById("tipForm");
+        const billInput = document.getElementById("bill");
+        const tipInput = document.getElementById("tip");
+
+        const billResult = document.getElementById("billResult");
+        const tipResult = document.getElementById("tipResult");
+        const totalResult = document.getElementById("totalResult");
+        const error = document.getElementById("error");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const bill = Number(billInput.value);
+            const percentage = Number(tipInput.value);
+
+            if (bill < 0 || !Number.isFinite(bill)) {
+                error.textContent = "Please enter a valid bill amount.";
+                error.style.display = "block";
+                return;
+            }
+
+            if (
+                percentage < 0 ||
+                percentage > 100 ||
+                !Number.isFinite(percentage)
+            ) {
+                error.textContent = "Please enter a tip between 0% and 100%.";
+                error.style.display = "block";
+                return;
+            }
+
+            const tip = bill * (percentage / 100);
+            const total = bill + tip;
+
+            error.style.display = "none";
+
+            billResult.textContent = `₹${bill.toFixed(2)}`;
+            tipResult.textContent = `₹${tip.toFixed(2)}`;
+            totalResult.textContent = `₹${total.toFixed(2)}`;
+        });
+    </script>
+
+</body>
+
+</html>
